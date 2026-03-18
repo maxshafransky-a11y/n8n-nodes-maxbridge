@@ -1,5 +1,5 @@
 {
-    "name":  "n8n-nodes-max",
+    "name":  "n8n-nodes-maxbridge",
     "version":  "0.1.0",
     "description":  "Verified-ready n8n community node package for the MAX Bot API.",
     "license":  "MIT",
@@ -30,7 +30,7 @@
                     "test:integration":  "npm run build \u0026\u0026 node tests/integration/maxTrigger.test.cjs",
                     "test":  "npm run test:unit \u0026\u0026 npm run test:integration",
                     "scan":  "node scripts/verify-package-metadata.mjs",
-                    "scan:published":  "npx @n8n/scan-community-package n8n-nodes-max",
+                    "scan:published":  "npx @n8n/scan-community-package n8n-nodes-maxbridge",
                     "release":  "n8n-node release",
                     "prepublishOnly":  "npm run build"
                 },

@@ -1,6 +1,9 @@
-# n8n-nodes-max
+# n8n-nodes-maxbridge
 
 Verified-ready n8n community node package for the MAX Bot API.
+
+Published package name: `n8n-nodes-maxbridge`.
+Node display names in n8n remain `Max` and `Max Trigger`.
 
 ## Status
 
@@ -20,7 +23,7 @@ Remaining release work:
 ## Installation
 
 ```bash
-npm install n8n-nodes-max
+npm install n8n-nodes-maxbridge
 ```
 
 For local development in this repository:
