@@ -1,4 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="14" fill="#F9FAFB"/>
-  <path d="M14 46V18h7.4l10.6 15.1L42.6 18H50v28h-7V29.4l-10.2 14h-1.6L21 29.4V46h-7Z" fill="#111827"/>
+  <defs>
+    <linearGradient id="bg" x1="7" y1="6" x2="58" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <linearGradient id="dot" x1="45" y1="12" x2="55" y2="22" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#F97316"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <rect x="3" y="3" width="58" height="58" rx="13" stroke="#CBD5E1"/>
+  <path d="M17 19.5C17 16.4624 19.4624 14 22.5 14H41.5C44.5376 14 47 16.4624 47 19.5V33.5C47 36.5376 44.5376 39 41.5 39H31.8L24 46.5V39H22.5C19.4624 39 17 36.5376 17 33.5V19.5Z" fill="#0F172A"/>
+  <path d="M24 31.5V21H28.1L32 26.55L35.9 21H40V31.5H37.42V25.28L33.46 30.7H32.54L28.58 25.28V31.5H24Z" fill="#F8FAFC"/>
+  <circle cx="49.5" cy="14.5" r="4.5" fill="url(#dot)"/>
 </svg>

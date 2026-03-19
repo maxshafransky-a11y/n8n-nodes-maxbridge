@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="115" y1="40" x2="1146" y2="645" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="0.55" stop-color="#111827"/>
+      <stop offset="1" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="132" y1="112" x2="590" y2="534" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F2937"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="875" y1="207" x2="999" y2="331" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#FB7185"/>
+    </linearGradient>
+    <filter id="shadow" x="93" y="73" width="500" height="500" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="18"/>
+      <feGaussianBlur stdDeviation="20"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 0.0156863 0 0 0 0 0.0235294 0 0 0 0 0.054902 0 0 0 0.35 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="640" rx="32" fill="url(#bg)"/>
+  <circle cx="1088" cy="104" r="122" fill="#1E293B"/>
+  <circle cx="1088" cy="104" r="121" stroke="#334155"/>
+  <circle cx="159" cy="561" r="186" fill="#111827"/>
+  <circle cx="159" cy="561" r="185" stroke="#334155"/>
+  <g filter="url(#shadow)">
+    <rect x="133" y="113" width="420" height="420" rx="48" fill="url(#panel)"/>
+    <rect x="145" y="125" width="396" height="396" rx="36" stroke="#334155" stroke-width="2"/>
+    <path d="M225 197.5C225 171.819 245.819 151 271.5 151H415.5C441.181 151 462 171.819 462 197.5V307.5C462 333.181 441.181 354 415.5 354H341.8L282 411.5V354H271.5C245.819 354 225 333.181 225 307.5V197.5Z" fill="#F8FAFC"/>
+    <path d="M278 292V203H309.3L342 249.45L374.7 203H406V292H384.38V239.99L351.21 285.3H343.49L310.32 239.99V292H278Z" fill="#0F172A"/>
+    <circle cx="487.5" cy="176.5" r="28.5" fill="url(#accent)"/>
+  </g>
+  <text x="640" y="244" fill="#F8FAFC" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="76" font-weight="700" letter-spacing="0.5">MAX Bridge</text>
+  <text x="640" y="308" fill="#CBD5E1" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="28" font-weight="500">n8n community node for the MAX Bot API</text>
+  <rect x="640" y="367" width="232" height="54" rx="27" fill="#F8FAFC" fill-opacity="0.08"/>
+  <text x="671" y="402" fill="#F8FAFC" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="24" font-weight="600">Messages</text>
+  <rect x="888" y="367" width="180" height="54" rx="27" fill="#F8FAFC" fill-opacity="0.08"/>
+  <text x="922" y="402" fill="#F8FAFC" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="24" font-weight="600">Uploads</text>
+  <rect x="1084" y="367" width="110" height="54" rx="27" fill="#F8FAFC" fill-opacity="0.08"/>
+  <text x="1115" y="402" fill="#F8FAFC" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="24" font-weight="600">AI</text>
+  <text x="640" y="479" fill="#94A3B8" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="24" font-weight="500">Webhook triggers, attachments, raw API, and agent-ready actions.</text>
+</svg>

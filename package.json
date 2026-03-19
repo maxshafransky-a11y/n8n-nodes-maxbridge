@@ -1,69 +1,68 @@
 {
-    "name":  "n8n-nodes-maxbridge",
-    "version":  "0.1.5",
-    "description":  "Verified-ready n8n community node package for the MAX Bot API.",
-    "license":  "MIT",
-    "homepage":  "https://github.com/maxshafransky-a11y/n8n-nodes-max#readme",
-    "keywords":  [
-                     "n8n-community-node-package",
-                     "n8n",
-                     "max",
-                     "bot-api"
-                 ],
-    "author":  "maxshafransky-a11y",
-    "repository":  {
-                       "type":  "git",
-                       "url":  "git+https://github.com/maxshafransky-a11y/n8n-nodes-max.git"
-                   },
-    "engines":  {
-                    "node":  "\u003e=20.19 \u003c25"
-                },
-    "scripts":  {
-                    "clean":  "node scripts/clean-dist.mjs",
-                    "build":  "npm run clean \u0026\u0026 tsc \u0026\u0026 node scripts/copy-static-assets.mjs",
-                    "build:watch":  "tsc --watch",
-                    "dev":  "npm run build:watch",
-                    "lint":  "eslint credentials nodes scripts --ext .ts,.mjs",
-                    "lint:fix":  "eslint credentials nodes scripts --ext .ts,.mjs --fix",
-                    "typecheck":  "tsc --noEmit",
-                    "test:unit":  "npm run build \u0026\u0026 node tests/unit/transport.test.cjs \u0026\u0026 node tests/unit/message-helpers.test.cjs \u0026\u0026 node tests/unit/message-retry.test.cjs \u0026\u0026 node tests/unit/action-execution.test.cjs",
-                    "test:integration":  "npm run build \u0026\u0026 node tests/integration/maxTrigger.test.cjs",
-                    "test":  "npm run test:unit \u0026\u0026 npm run test:integration",
-                    "scan":  "node scripts/verify-package-metadata.mjs",
-                    "scan:published":  "npx @n8n/scan-community-package n8n-nodes-maxbridge",
-                    "release":  "n8n-node release",
-                    "prepublishOnly":  "npm run build"
-                },
-    "files":  [
-                  "dist"
-              ],
-    "n8n":  {
-                "n8nNodesApiVersion":  1,
-                "strict":  true,
-                "credentials":  [
-                                    "dist/credentials/MaxApi.credentials.js"
-                                ],
-                "nodes":  [
-                              "dist/nodes/Max/Max.node.js",
-                              "dist/nodes/MaxTrigger/MaxTrigger.node.js"
-                          ]
-            },
-    "devDependencies":  {
-                            "@n8n/node-cli":  "*",
-                            "@types/node":  "^22.13.10",
-                            "eslint":  "9.32.0",
-                            "prettier":  "3.6.2",
-                            "release-it":  "^19.0.4",
-                            "typescript":  "5.9.2"
-                        },
-    "peerDependencies":  {
-                             "n8n-workflow":  "*"
-                         },
-    "bugs":  {
-                 "url":  "https://github.com/maxshafransky-a11y/n8n-nodes-max/issues"
-             }
+    "name": "n8n-nodes-maxbridge",
+    "version": "0.1.5",
+    "description": "Verified-ready n8n community node package for the MAX Bot API.",
+    "license": "MIT",
+    "homepage": "https://github.com/maxshafransky-a11y/n8n-nodes-max#readme",
+    "keywords": [
+        "n8n-community-node-package",
+        "n8n",
+        "max",
+        "bot-api"
+    ],
+    "author": "maxshafransky-a11y",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/maxshafransky-a11y/n8n-nodes-max.git"
+    },
+    "engines": {
+        "node": ">=20.19 <25"
+    },
+    "scripts": {
+        "clean": "node scripts/clean-dist.mjs",
+        "build": "npm run clean && tsc && node scripts/copy-static-assets.mjs",
+        "build:watch": "tsc --watch",
+        "dev": "npm run build:watch",
+        "lint": "eslint credentials nodes scripts --ext .ts,.mjs",
+        "lint:fix": "eslint credentials nodes scripts --ext .ts,.mjs --fix",
+        "typecheck": "tsc --noEmit",
+        "test:unit": "npm run build && node tests/unit/transport.test.cjs && node tests/unit/message-helpers.test.cjs && node tests/unit/message-retry.test.cjs && node tests/unit/action-execution.test.cjs",
+        "test:integration": "npm run build && node tests/integration/maxTrigger.test.cjs",
+        "test": "npm run test:unit && npm run test:integration",
+        "scan": "node scripts/verify-package-metadata.mjs",
+        "scan:published": "npx @n8n/scan-community-package n8n-nodes-maxbridge",
+        "release": "n8n-node release",
+        "prepublishOnly": "npm run build"
+    },
+    "files": [
+        "dist"
+    ],
+    "n8n": {
+        "n8nNodesApiVersion": 1,
+        "strict": true,
+        "credentials": [
+            "dist/credentials/MaxApi.credentials.js"
+        ],
+        "nodes": [
+            "dist/nodes/Max/Max.node.js",
+            "dist/nodes/MaxTrigger/MaxTrigger.node.js"
+        ]
+    },
+    "devDependencies": {
+        "@n8n/node-cli": "0.23.0",
+        "@types/node": "^22.13.10",
+        "eslint": "9.32.0",
+        "prettier": "3.6.2",
+        "release-it": "^19.0.4",
+        "typescript": "5.9.2"
+    },
+    "peerDependencies": {
+        "n8n-workflow": "*"
+    },
+    "bugs": {
+        "url": "https://github.com/maxshafransky-a11y/n8n-nodes-max/issues"
+    },
+    "overrides": {
+        "imurmurhash": "0.1.4"
+    }
 }
-
-
-
-
