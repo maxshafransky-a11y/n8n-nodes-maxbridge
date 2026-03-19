@@ -1,3 +1,4 @@
+import { sleep } from 'n8n-workflow';
 import type { IDataObject, IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 
 import {
@@ -7,6 +8,7 @@ import {
 } from '../errors/maxApiError';
 import type { MaxApiCredentialsShape } from '../transport/maxApiRequest';
 import { maxApiRequest } from '../transport/maxApiRequest';
+import { getMaxNode } from '../maxNodeContext';
 import { buildMaxUploadRetryDelays } from '../uploads/maxUpload';
 import {
 	buildMaxAnswerCallbackBody,
@@ -31,10 +33,7 @@ const waitFor = async (delayMs: number): Promise<void> => {
 		return;
 	}
 
-	await new Promise((resolve) => {
-		// eslint-disable-next-line @n8n/community-nodes/no-restricted-globals
-		setTimeout(resolve, delayMs);
-	});
+	await sleep(delayMs);
 };
 
 export interface MaxAttachmentRetryConfig {
@@ -230,7 +229,7 @@ export const executeMessageResource = async (
 				continue;
 			}
 
-			throw toMaxNodeApiError(context.getNode(), error);
+			throw toMaxNodeApiError(getMaxNode(context), error);
 		}
 	}
 

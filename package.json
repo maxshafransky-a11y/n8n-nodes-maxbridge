@@ -1,6 +1,6 @@
 {
     "name":  "n8n-nodes-maxbridge",
-    "version":  "0.1.0",
+    "version":  "0.1.5",
     "description":  "Verified-ready n8n community node package for the MAX Bot API.",
     "license":  "MIT",
     "homepage":  "https://github.com/maxshafransky-a11y/n8n-nodes-max#readme",
@@ -63,3 +63,7 @@
                  "url":  "https://github.com/maxshafransky-a11y/n8n-nodes-max/issues"
              }
 }
+
+
+
+

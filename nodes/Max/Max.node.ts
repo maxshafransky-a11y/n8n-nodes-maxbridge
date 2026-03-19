@@ -7,6 +7,7 @@ import type {
 import { NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
 
 import { executeMessageResource } from './actions/message';
+import { getMaxNode } from './maxNodeContext';
 import { executeRawApiResource } from './actions/rawApi';
 import { executeUploadResource } from './actions/upload';
 import { messageDescription } from './descriptions/MessageDescription';
@@ -24,7 +25,13 @@ export class Max implements INodeType {
 		},
 		group: ['transform'],
 		version: 1,
-		usableAsTool: true,
+		usableAsTool: {
+			replacements: {
+				displayName: 'Max Tool',
+				description: 'Use the MAX Bot API from an AI Agent tool connection',
+                subtitle: '={{ "AI tool" }}',
+			},
+		},
 		subtitle: '={{ $parameter["operation"] + ": " + $parameter["resource"] }}',
 		description: 'Interact with the MAX Bot API',
 		defaults: {
@@ -78,7 +85,8 @@ export class Max implements INodeType {
 			case 'rawApi':
 				return [await executeRawApiResource(this, credentials)];
 			default:
-				throw new NodeOperationError(this.getNode(), `Unsupported resource: ${resource}`);
+				throw new NodeOperationError(getMaxNode(this), `Unsupported resource: ${resource}`);
 		}
 	}
 }
+

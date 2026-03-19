@@ -115,7 +115,11 @@ export const maxApiRequest = async (
 ): Promise<unknown> => {
 	const requestOptions = buildMaxApiRequestOptions(credentials, method, path, options);
 
-	return await context.helpers.httpRequestWithAuthentication(MAX_API_CREDENTIAL_NAME, requestOptions);
+	return await context.helpers.httpRequestWithAuthentication.call(
+		context,
+		MAX_API_CREDENTIAL_NAME,
+		requestOptions,
+	);
 };
 
 export const extractMaxPaginationItems = (response: unknown, responseItemsKey: string): IDataObject[] => {

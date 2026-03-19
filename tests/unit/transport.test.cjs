@@ -37,9 +37,11 @@ const run = async () => {
 	assert.deepEqual(builtRequest.qs, { limit: 50 }, 'request options should keep only defined query values');
 
 	const paginationCalls = [];
+	const paginationHelperThisValues = [];
 	const paginationContext = {
 		helpers: {
-			httpRequestWithAuthentication: async (_credentialName, requestOptions) => {
+			httpRequestWithAuthentication: async function (_credentialName, requestOptions) {
+				paginationHelperThisValues.push(this);
 				paginationCalls.push(requestOptions);
 				if (paginationCalls.length === 1) {
 					return {
@@ -67,6 +69,11 @@ const run = async () => {
 		'paginated requests should collect items across marker-based pages',
 	);
 	assert.equal(paginationCalls.length, 2, 'paginated requests should continue while a marker exists');
+	assert.equal(
+		paginationHelperThisValues[0],
+		paginationContext,
+		'transport requests should bind the n8n execution context when calling httpRequestWithAuthentication',
+	);
 	assert.deepEqual(
 		paginationCalls[1].qs,
 		{ limit: 10, marker: 'next-page' },

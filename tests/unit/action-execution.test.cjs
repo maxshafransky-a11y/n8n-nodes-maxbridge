@@ -1,5 +1,8 @@
 const assert = require('node:assert/strict');
 
+const { Max } = require('../../dist/nodes/Max/Max.node.js');
+
+
 const { executeMessageResource } = require('../../dist/nodes/Max/actions/message.js');
 const { executeUploadResource } = require('../../dist/nodes/Max/actions/upload.js');
 const { executeRawApiResource } = require('../../dist/nodes/Max/actions/rawApi.js');
@@ -14,6 +17,19 @@ const createContext = (parameters, helpers) => ({
 });
 
 const run = async () => {
+	const maxNode = new Max();
+	assert.deepEqual(
+		maxNode.description.usableAsTool,
+		{
+			replacements: {
+				displayName: 'Max Tool',
+				description: 'Use the MAX Bot API from an AI Agent tool connection',
+                subtitle: '={{ "AI tool" }}',
+			},
+		},
+		'Max should expose a clearly labeled AI tool variant so users can distinguish it from the regular action node',
+	);
+
 	const messageRequests = [];
 	const messageContext = createContext(
 		{
@@ -141,7 +157,42 @@ const run = async () => {
 	assert.deepEqual(uploadAuthRequests[0].requestOptions.qs, { type: 'video' }, 'upload execution should request the correct upload type');
 	assert.equal(uploadBinaryRequests[0].url, 'https://upload.max.example/upload', 'upload execution should send the binary payload to the MAX upload URL');
 	assert.equal(uploadBinaryRequests[0].headers.Authorization, 'token-1', 'upload execution should authorize binary uploads with the MAX token');
-
+	await assert.rejects(
+		() =>
+			executeMessageResource(
+				{
+					getInputData: () => [{ json: {} }],
+					getNodeParameter: (name, _itemIndex, defaultValue) => {
+						const parameters = {
+							operation: 'send',
+							recipientType: 'chat',
+							chatId: 'chat-1',
+							text: 'hello from max',
+							format: 'markdown',
+							additionalFields: {},
+						};
+						return Object.prototype.hasOwnProperty.call(parameters, name)
+							? parameters[name]
+							: defaultValue;
+					},
+					continueOnFail: () => false,
+					helpers: {
+						httpRequestWithAuthentication: async function () {
+							throw new Error('helper failure');
+						},
+					},
+				},
+				{},
+			),
+		(error) => {
+			assert.equal(
+				error.message,
+				'helper failure',
+				'action execution should preserve the original error even when getNode() is unavailable in the execute context',
+			);
+			return true;
+		},
+	);
 	console.log('action execution checks passed');
 };
 
@@ -149,3 +200,5 @@ run().catch((error) => {
 	console.error(error);
 	process.exitCode = 1;
 });
+
+

@@ -1,6 +1,7 @@
 import type {
 	IDataObject,
 	IHookFunctions,
+	INode,
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
@@ -21,10 +22,26 @@ import {
 
 const TRIGGER_STATIC_SUBSCRIPTION_URL = 'subscriptionUrl';
 
+const FALLBACK_TRIGGER_NODE: INode = {
+	id: 'maxTrigger',
+	name: 'Max Trigger',
+	type: 'maxTrigger',
+	typeVersion: 1,
+	position: [0, 0],
+	parameters: {},
+};
+
+const getMaxTriggerNode = (context: { getNode?: () => INode }): INode => {
+	if (typeof context.getNode === 'function') {
+		return context.getNode();
+	}
+
+	return FALLBACK_TRIGGER_NODE;
+};
+
 const clearStoredSubscription = (staticData: IDataObject): void => {
 	delete staticData[TRIGGER_STATIC_SUBSCRIPTION_URL];
 };
-
 export class MaxTrigger implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Max Trigger',
@@ -35,7 +52,7 @@ export class MaxTrigger implements INodeType {
 		},
 		group: ['trigger'],
 		version: 1,
-		usableAsTool: true,
+		usableAsTool: false as unknown as true,
 		description: 'Handle MAX webhook updates',
 		defaults: {
 			name: 'Max Trigger',
@@ -108,7 +125,7 @@ export class MaxTrigger implements INodeType {
 				const webhookUrl = this.getNodeWebhookUrl('default');
 				if (!webhookUrl) {
 					throw new NodeOperationError(
-						this.getNode(),
+						getMaxTriggerNode(this),
 						'n8n did not provide a webhook URL for the MAX trigger.',
 					);
 				}
@@ -182,9 +199,11 @@ export class MaxTrigger implements INodeType {
 				workflowData: [[item]],
 			};
 		} catch (error) {
-			throw toMaxNodeApiError(this.getNode(), error);
+			throw toMaxNodeApiError(getMaxTriggerNode(this), error);
 		}
 	}
 }
 
 export { normalizeMaxTriggerEvent };
+
+

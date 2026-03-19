@@ -7,6 +7,7 @@ import type {
 } from 'n8n-workflow';
 
 import { extractMaxErrorMessage, toMaxNodeApiError } from '../errors/maxApiError';
+import { getMaxNode } from '../maxNodeContext';
 import type { MaxApiCredentialsShape } from '../transport/maxApiRequest';
 import { maxApiRequest } from '../transport/maxApiRequest';
 import { normalizeMaxNodeResponse, parseMaxJsonParameter } from './messageHelpers';
@@ -75,7 +76,7 @@ export const executeRawApiResource = async (
 				continue;
 			}
 
-			throw toMaxNodeApiError(context.getNode(), error);
+			throw toMaxNodeApiError(getMaxNode(context), error);
 		}
 	}
 
